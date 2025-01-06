@@ -1,0 +1,54 @@
+# dest_select CMake config file
+#
+# This file sets the following variables:
+# dest_select_FOUND - Always TRUE.
+# dest_select_INCLUDE_DIRS - Directories containing the dest_select include files.
+# dest_select_IDL_DIRS - Directories containing the dest_select IDL files.
+# dest_select_LIBRARIES - Libraries needed to use dest_select.
+# dest_select_DEFINITIONS - Compiler flags for dest_select.
+# dest_select_VERSION - The version of dest_select found.
+# dest_select_VERSION_MAJOR - The major version of dest_select found.
+# dest_select_VERSION_MINOR - The minor version of dest_select found.
+# dest_select_VERSION_REVISION - The revision version of dest_select found.
+# dest_select_VERSION_CANDIDATE - The candidate version of dest_select found.
+
+message(STATUS "Found dest_select-@PROJECT_VERSION@")
+set(dest_select_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(dest_select_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(dest_select_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(dest_select_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(dest_select_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(dest_select_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(dest_select_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(dest_select_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(dest_select_VERSION @PROJECT_VERSION@)
+set(dest_select_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(dest_select_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(dest_select_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(dest_select_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
