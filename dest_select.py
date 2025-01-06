@@ -173,27 +173,32 @@ class dest_select(OpenRTM_aist.DataFlowComponentBase):
         def button_click1():
             self._d_gui_out.data = 1
             self._d_place.data = self._place1[0]
+            
             print(self._d_place.data)
             self._gui_outOut.write()
+            self._placeOut.write()
 
         def button_click2():
             self._d_gui_out.data = 2
             self._d_place.data = self._place2[0]
             print(self._d_place.data)
             self._gui_outOut.write()      
-
+            self._placeOut.write()
+            
         def button_click3():
             self._d_gui_out.data = 3
             self._d_place.data = self._place3[0]
             print(self._d_place.data)
             self._gui_outOut.write()      
+            self._placeOut.write()
             
         def button_click4():
             self._d_gui_out.data = 4
             self._d_place.data = self._place4[0]
             print(self._d_place.data)
             self._gui_outOut.write()
-        
+            self._placeOut.write()
+                    
         def close_app():
             root.destroy()  
             
@@ -204,41 +209,41 @@ class dest_select(OpenRTM_aist.DataFlowComponentBase):
         root.geometry("500x400")
 
             
-        button0 = tk.Button(
+        button1 = tk.Button(
             text=self._place1,
             font=10,
             width=40,
             height=3,
-            command = button_click4
+            command = button_click1
         )
-        button0.place(x=60, y=20) #ボタンを配置する位置の設定
-
-        button1 = tk.Button(
-            text=self._place2,
-            font=10,
-            width=40,
-            height=3,
-            command=button_click1,
-        )
-        button1.place(x=60, y=110) #ボタンを配置する位置の設定
+        button1.place(x=60, y=20) #ボタンを配置する位置の設定
 
         button2 = tk.Button(
-            text=self._place3,
+            text=self._place2,
             font=10,
             width=40,
             height=3,
             command=button_click2,
         )
-        button2.place(x=60, y=200) #ボタンを配置する位置の設定
+        button2.place(x=60, y=110) #ボタンを配置する位置の設定
 
         button3 = tk.Button(
-            text=self._place4,
+            text=self._place3,
             font=10,
             width=40,
             height=3,
             command=button_click3,
         )
-        button3.place(x=60, y=290) #ボタンを配置する位置の設定
+        button3.place(x=60, y=200) #ボタンを配置する位置の設定
+
+        button4 = tk.Button(
+            text=self._place4,
+            font=10,
+            width=40,
+            height=3,
+            command=button_click4,
+        )
+        button4.place(x=60, y=290) #ボタンを配置する位置の設定
 
         root.mainloop()      
 
